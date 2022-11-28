@@ -26,9 +26,11 @@ public class TestBase{
 
     public static void setUp(){
         /*WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();*/
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();*/
        WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
+        driver.manage().window().maximize();
     }
     @BeforeClass
     public static void openAppPage(){
