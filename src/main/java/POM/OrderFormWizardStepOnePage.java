@@ -18,11 +18,19 @@ public class OrderFormWizardStepOnePage{
     private By metroStationField = By.className("select-search__input");
     private By phoneField = By.xpath(".//input[@placeholder='* Телефон: на него позвонит курьер']");
     private By orderNextButton = By.xpath(".//div[@class='Order_Content__bmtHS']//button[text()='Далее']");
-    //(".//div[@class='Order_Buttons__1xGrp']/button[text()='Заказать']");
+    private By headerLogoScooterLink = By.className("Header_LogoScooter__3lsAR");
 
 
     public OrderFormWizardStepOnePage(WebDriver driver){
         this.driver = driver;
+    }
+
+    public void clickHeaderLogoScooterLink(){
+        WebElement element = driver.findElement(headerLogoScooterLink);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
+        element.click();
+        new WebDriverWait(driver,Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.className("Home_FourPart__1uthg")));
     }
 
     public void clickOrderNextButton(){
@@ -31,7 +39,6 @@ public class OrderFormWizardStepOnePage{
         element.click();
         new WebDriverWait(driver,Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.className("Order_Buttons__1xGrp")));
-
     }
 
     public void waitForLoadOrderContentForm(){

@@ -23,6 +23,7 @@ public class OrderFormWizardStepTwoPage{
     private By registerButtonMiddle = By.xpath(".//div[@class='Order_Buttons__1xGrp']/button[text()='Заказать']");
     private By orderConfirmButton = By.xpath(".//div[@class='Order_Modal__YZ-d3']//button[text()='Да']");
     private By statusViewButton = By.xpath(".//div[@class='Order_Modal__YZ-d3']//button[text()='Посмотреть статус']");
+    private By headerLogoScooterLink = By.className("Header_LogoScooter__3lsAR");
 
 
     public OrderFormWizardStepTwoPage(WebDriver driver){

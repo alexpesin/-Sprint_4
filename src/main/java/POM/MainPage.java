@@ -13,22 +13,8 @@ public class MainPage{
         private WebDriver driver;
         private By headerRegisterButton = By.xpath(".//div[@class='Header_Nav__AGCXC']/button[text()='Заказать']");
         private By homeFinishRegisterButton = By.xpath(".//div[@class='Home_FinishButton__1_cWm']/button[text()='Заказать']");
-       /* private By orderContentForm = By.className("Order_Content__bmtHS");
-        private By surNameField = By.cssSelector("[placeholder = * Имя]");
-        private By nameField = By.cssSelector("[placeholder = * Фамилия]");
-        private By addressField = By.cssSelector("[placeholder = * Адрес: куда привезти заказ]");
-        private By metroStationField = By.className("Order_Filled__3GNlS");
-        private By phoneField = By.cssSelector("[placeholder = * Телефон: на него позвонит курьер]");
-        private By orderNextButton = By.className("Button_Button__ra12g Button_Middle__1CSJM");
-        private By dayPickerToDayButton = By.xpath(".//div[contains(@class, 'react-datepicker__day--today')]");
-        private By datePickerPopper = By.className("react-datepicker-popper");
-        private By dropDownСontrol = By.className("Dropdown-control");
-        private By orderCheckboxBlack = By.id("black");
-        private By orderCheckboxGrey = By.id("grey");
-        private By inputContainer = By.cssSelector("[placeholder = Комментарий для курьера]");
-        private By registerButtonMiddle = By.xpath(".//div[@class='Order_Buttons__1xGrp']/button[text()='Заказать']");
-        private By orderConfirmButton = By.xpath(".//div[@class='Order_Modal__YZ-d3']/button[text()='да']");
-        private By statusViewButton = By.xpath(".//div[@class='Order_Modal__YZ-d3']/button[text()='Посмотреть статус']");*/
+        private By headerLogoScooterLink = By.className("Header_LogoScooter__3lsAR");
+
 
 
         public MainPage(WebDriver driver){
