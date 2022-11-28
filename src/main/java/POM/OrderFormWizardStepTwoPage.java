@@ -36,13 +36,7 @@ public class OrderFormWizardStepTwoPage{
         new WebDriverWait(driver, Duration.ofSeconds(1))
                 .until(ExpectedConditions.visibilityOfElementLocated(datePickerField)).click();
     }
-    public void clickDatePickerPopper(){
-        WebElement element = driver.findElement(datePickerPopper);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
-        new WebDriverWait(driver, Duration.ofSeconds(1))
-                .until(ExpectedConditions.visibilityOfElementLocated(datePickerPopper)).click();
-        //element.click();
-    }
+   
     public void clickDayPickerToDayButton(){
         WebElement element = driver.findElement(dayPickerToDayButton);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
@@ -56,12 +50,7 @@ public class OrderFormWizardStepTwoPage{
         new WebDriverWait(driver,Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.className("Dropdown-menu")));
     }
-    public void clickDropDownOptionsToSelectOneDay(){
-        driver.findElement(By.xpath(".//div[text()='сутки']")).click();
-    }
-    public void clickDropDownOptionsToSelectSevenDays(){
-        driver.findElement(By.xpath(".//div[text()='семеро суток']")).click();
-    }
+   
     public void clickDropDownOptionsToSelectRentDuration(String rentDuration){
         String rentDurationOptionTemplate = ".//div[text()='%s']";
         String rentDurationValue = String.format(rentDurationOptionTemplate, rentDuration);
@@ -103,13 +92,7 @@ public class OrderFormWizardStepTwoPage{
         new WebDriverWait(driver,Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.className("Track_Content__St6Kn")));
     }
-
-    public void setInputContainer(){
-        WebElement element = driver.findElement(inputContainer);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
-        element.clear();
-        element.sendKeys("Не опаздывать!");
-    }
+    
     public void setInputContainer(String comments){
         if(comments !=null) {
             WebElement element = driver.findElement(inputContainer);
@@ -118,19 +101,11 @@ public class OrderFormWizardStepTwoPage{
             element.sendKeys(comments);
         }
     }
-    public void setOrderDate(){
-        clickDatePickerField();
-        //clickDatePickerPopper();
-        clickDayPickerToDayButton();
-    }
+    
     public void setOrderDate(String date){
         clickDatePickerField();
         //clickDatePickerPopper();
         clickDayPickerToDayButton();
-    }
-    public void setOrderRentTime(){
-        clickDropDownСontrolButton();
-        clickDropDownOptionsToSelectSevenDays();
     }
     public void setOrderRentTime(String rentDuration){
         clickDropDownСontrolButton();
