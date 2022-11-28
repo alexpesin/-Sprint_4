@@ -1,3 +1,4 @@
+
 import POM.HomeFAQPage;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -87,3 +88,4 @@ public static void openFAQPage(){
 
 
 }
+
