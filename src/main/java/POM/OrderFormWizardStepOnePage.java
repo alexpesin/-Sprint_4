@@ -41,16 +41,6 @@ public class OrderFormWizardStepOnePage{
                 .until(ExpectedConditions.visibilityOfElementLocated(By.className("Order_Buttons__1xGrp")));
     }
 
-    public void waitForLoadOrderContentForm(){
-        new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(orderContentForm));
-    }
-    public void setSurNameField(){
-        WebElement element = driver.findElement(surNameField);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
-        element.clear();
-        element.sendKeys("Иван");
-    }
 
     public void setSurNameField(String surName){
         WebElement element = driver.findElement(surNameField);
@@ -58,12 +48,7 @@ public class OrderFormWizardStepOnePage{
         element.clear();
         element.sendKeys(surName);
     }
-    public void setNameField(){
-        WebElement element = driver.findElement(nameField);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
-        element.clear();
-        element.sendKeys("Иванов");
-    }
+
     public void setNameField(String name){
         WebElement element = driver.findElement(nameField);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
@@ -71,12 +56,6 @@ public class OrderFormWizardStepOnePage{
         element.sendKeys(name);
     }
 
-    public void setAddressField(){
-        WebElement element = driver.findElement(addressField);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
-        element.clear();
-        element.sendKeys("ул. Труда");
-    }
     public void setAddressField(String address){
         if (address !=null) {
             WebElement element = driver.findElement(addressField);
@@ -85,14 +64,7 @@ public class OrderFormWizardStepOnePage{
             element.sendKeys(address);
         }
     }
-    public void setMetroStationField(){
-        WebElement element = driver.findElement(metroStationField);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
-        String metroOptionTemplate = ".//div[@class='select-search__select']//*[text()='%s']";
-        String metroValue = String.format(metroOptionTemplate, "Черкизовская");
-        element.sendKeys("Черкизовская");
-        driver.findElement(By.xpath(metroValue)).click();
-    }
+
     public void setMetroStationField(String metroStation){
         WebElement element = driver.findElement(metroStationField);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
@@ -102,12 +74,6 @@ public class OrderFormWizardStepOnePage{
         driver.findElement(By.xpath(metroValue)).click();
     }
 
-    public void setPhoneField(){
-        WebElement element = driver.findElement(phoneField);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
-        element.clear();
-        element.sendKeys("+7555555555");
-    }
     public void setPhoneField(String phone){
         WebElement element = driver.findElement(phoneField);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
