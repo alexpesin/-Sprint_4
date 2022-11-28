@@ -59,21 +59,6 @@ public class TestBase{
         }
     }
 
-    public void fillOutOrderForm(){
-        OrderFormWizardStepOnePage formStepOne = new OrderFormWizardStepOnePage(getDriver());
-        formStepOne.setSurNameField();
-        formStepOne.setNameField();
-        formStepOne.setAddressField();
-        formStepOne.setMetroStationField();
-        formStepOne.setPhoneField();
-        formStepOne.clickOrderNextButton();
-        OrderFormWizardStepTwoPage formStepTwo = new OrderFormWizardStepTwoPage(getDriver());
-        formStepTwo.setOrderDate();
-        formStepTwo.setOrderRentTime();
-        formStepTwo.clickOrderCheckboxBlack();
-        formStepTwo.setInputContainer();
-
-    }
 
    public void fillOutOrderForm(String surName, String name,
                                 String address, String metroStation, String phone, String date, String rentDuration, String scooterColour, String comments){
