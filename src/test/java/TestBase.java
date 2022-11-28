@@ -1,10 +1,7 @@
-import POM.MainPage;
 import POM.OrderFormWizardStepOnePage;
 import POM.OrderFormWizardStepTwoPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -18,6 +15,7 @@ import java.time.Duration;
 
 public class TestBase{
     private static WebDriver driver;
+
     @BeforeClass
     // создали драйвер для браузера Chrome
         /*ChromeOptions options = new ChromeOptions();
@@ -25,13 +23,14 @@ public class TestBase{
         driver = new ChromeDriver(options);*/
 
     public static void setUp(){
-        /*WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.manage().window().maximize();*/
-       WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
         driver.manage().window().maximize();
+        /*WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
+        driver.manage().window().maximize();*/
     }
+
     @BeforeClass
     public static void openAppPage(){
         driver.get("https://qa-scooter.praktikum-services.ru/");
@@ -50,38 +49,36 @@ public class TestBase{
 
     }
 
-    boolean isElementPresent(By locator) {
-        try {
+    @AfterClass
+    public static void tearDown(){
+        // Закрой браузер
+        driver.quit();
+        driver = null;
+    }
+
+    boolean isElementPresent(By locator){
+        try{
             driver.findElement(locator);
             return true;
-        } catch (NoSuchElementException e) {
+        }catch(NoSuchElementException e){
             return false;
         }
     }
 
-
-   public void fillOutOrderForm(String surName, String name,
-                                String address, String metroStation, String phone, String date, String rentDuration, String scooterColour, String comments){
-       OrderFormWizardStepOnePage formStepOne = new OrderFormWizardStepOnePage(getDriver());
+    public void fillOutOrderForm(String surName, String name,
+                                 String address, String metroStation, String phone, String date, String rentDuration, String scooterColour, String comments){
+        OrderFormWizardStepOnePage formStepOne = new OrderFormWizardStepOnePage(getDriver());
         formStepOne.setSurNameField(surName);
         formStepOne.setNameField(name);
         formStepOne.setAddressField(address);
         formStepOne.setMetroStationField(metroStation);
         formStepOne.setPhoneField(phone);
         formStepOne.clickOrderNextButton();
-       OrderFormWizardStepTwoPage formStepTwo = new OrderFormWizardStepTwoPage(getDriver());
+        OrderFormWizardStepTwoPage formStepTwo = new OrderFormWizardStepTwoPage(getDriver());
         formStepTwo.setOrderDate(date);
         formStepTwo.setOrderRentTime(rentDuration);
-       formStepTwo.clickScooterColour(scooterColour);
-        //formStepTwo.clickOrderCheckboxBlack();
+        formStepTwo.clickScooterColour(scooterColour);
         formStepTwo.setInputContainer(comments);
 
-    }
-
-    @AfterClass
-    public static void tearDown() {
-        // Закрой браузер
-        driver.quit();
-        driver = null;
     }
 }

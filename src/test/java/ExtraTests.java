@@ -1,9 +1,6 @@
-import POM.HomeFAQPage;
 import POM.MainPage;
 import POM.OrderFormWizardStepOnePage;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.openqa.selenium.By;
 

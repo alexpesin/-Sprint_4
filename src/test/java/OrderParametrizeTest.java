@@ -1,25 +1,27 @@
 import POM.MainPage;
-import org.junit.*;
+import POM.OrderFormWizardStepTwoPage;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import POM.OrderFormWizardStepTwoPage;
 import org.openqa.selenium.By;
 
 @RunWith(Parameterized.class)
 public class OrderParametrizeTest extends TestBase{
 
 
-    private String startRegisterButton;
-    private String surName;
-    private String name;
-    private String address;
-    private String metroStation;
-    private String phone;
+    private final String startRegisterButton;
+    private final String surName;
+    private final String name;
+    private final String address;
+    private final String metroStation;
+    private final String phone;
 
-    private String time;
-    private String rentDuration;
-    private String scooterColour;
-    private String comments;
+    private final String time;
+    private final String rentDuration;
+    private final String scooterColour;
+    private final String comments;
 
 
     public OrderParametrizeTest(String startRegisterButton, String surName, String name,
@@ -38,7 +40,7 @@ public class OrderParametrizeTest extends TestBase{
 
 
     @Parameterized.Parameters
-    public static Object[][] getFormData() {
+    public static Object[][] getFormData(){
         //Сгенерируй тестовые данные (нам нужно название городов и результат поиска)
         return new Object[][]{
                 {"top", "Елена", "Петрова", null, "Стрешнево", "11111111111", "27.12.2023", "семеро суток", null, null},
@@ -46,9 +48,9 @@ public class OrderParametrizeTest extends TestBase{
                 {"top", "Вася", "Иванов", "домой", "Сокольники", "55555555555", "27.11.2022", "трое суток", "чёрный жемчуг", "Нужно точно в срок!"},
 
 
-
         };
     }
+
     @Before
     public void openAppPageBeforeTest(){
         getDriver().get("https://qa-scooter.praktikum-services.ru/");
@@ -66,7 +68,6 @@ public class OrderParametrizeTest extends TestBase{
         Assert.assertTrue("Нет всплывающего окна с сообщением об успешном создании заказа",
                 isElementPresent(By.xpath(".//div[@class='Order_ModalHeader__3FDaJ'][text()='Заказ оформлен']")));
     }
-
 
 
 }
