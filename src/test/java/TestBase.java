@@ -1,6 +1,7 @@
 import POM.OrderFormWizardStepOnePage;
 import POM.OrderFormWizardStepTwoPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.openqa.selenium.By;
@@ -16,7 +17,7 @@ import java.time.Duration;
 public class TestBase{
     private static WebDriver driver;
 
-    @BeforeClass
+    //@BeforeClass
     // создали драйвер для браузера Chrome
         /*ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
@@ -31,11 +32,11 @@ public class TestBase{
         driver.manage().window().maximize();*/
     }
 
-    @BeforeClass
+    /*@BeforeClass
     public static void openAppPage(){
         driver.get("https://qa-scooter.praktikum-services.ru/");
         waitForLoadHomePage();
-    }
+    }*/
 
     public static WebDriver getDriver(){
         return driver;

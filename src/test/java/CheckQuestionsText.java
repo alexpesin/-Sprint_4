@@ -1,16 +1,19 @@
 import POM.HomeFAQPage;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
+import org.junit.*;
 
 import static org.junit.runners.MethodSorters.NAME_ASCENDING;
 
 @FixMethodOrder(NAME_ASCENDING)
-public class HomeFAQTextSingleMethodTest extends TestBase{
+public class CheckQuestionsText extends TestBase{
 
-    @BeforeClass
-    public static void openHomeFAQPage(){
+   /* В этом классе есть  два варианта запуска тестов:
+    1. используя @BeforeClass в TestBase инициализирую браузер один раз, прогоняю все тесты и закрываю браузер
+    2. @Before инициализирую и закрываю браузер после каждого теста (выбрано сейчаc  из-за условия задачи, но первый вариант выглядит логичнее)
+    */
+
+    @Before
+    public void openHomeFAQPage(){
+        setUp();
         HomeFAQPage objHomeFAQPage = new HomeFAQPage(getDriver());
         objHomeFAQPage.openFAQPage();
     }
@@ -83,6 +86,11 @@ public class HomeFAQTextSingleMethodTest extends TestBase{
         String actualItemText = objHomeFAQPage.getAccordionItemText(7);
         String expectedItemText = "Да, обязательно. Всем самокатов! И Москве, и Московской области.";
         Assert.assertEquals("Текст не соответствует ожидаемому", expectedItemText, actualItemText);
+    }
+    @After
+    public void tearDownAfterTest(){
+        // Закрой браузер
+        getDriver().quit();
     }
 
 }

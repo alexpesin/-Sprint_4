@@ -40,6 +40,11 @@ public class OrderFormWizardStepOnePage{
         new WebDriverWait(driver,Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.className("Order_Buttons__1xGrp")));
     }
+    public void clickOrderNextButtonNoRequiredFieldsAreCompleted(){
+        WebElement element = driver.findElement(orderNextButton);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
+        element.click();
+    }
 
 
     public void setSurNameField(String surName){

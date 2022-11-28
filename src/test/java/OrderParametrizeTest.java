@@ -1,5 +1,6 @@
 import POM.MainPage;
 import POM.OrderFormWizardStepTwoPage;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -53,6 +54,7 @@ public class OrderParametrizeTest extends TestBase{
 
     @Before
     public void openAppPageBeforeTest(){
+        setUp();
         getDriver().get("https://qa-scooter.praktikum-services.ru/");
         waitForLoadHomePage();
     }
@@ -68,6 +70,10 @@ public class OrderParametrizeTest extends TestBase{
         Assert.assertTrue("Нет всплывающего окна с сообщением об успешном создании заказа",
                 isElementPresent(By.xpath(".//div[@class='Order_ModalHeader__3FDaJ'][text()='Заказ оформлен']")));
     }
-
+    @After
+    public void tearDownAfterTest(){
+        // Закрой браузер
+        getDriver().quit();
+    }
 
 }
