@@ -47,13 +47,11 @@ public class OrderParametrizeTest extends TestBase{
                 {"top", "Елена", "Петрова", null, "Стрешнево", "11111111111", "27.12.2023", "семеро суток", null, null},
                 {"bottom", "Сергей Петрович", "Сидоров", "Кронштадский бульвар ", "Водный стадион", "55555555599", "27.11.2022", "четверо суток", "серая безысходность", "доставить заказ к 5 часам"},
                 {"top", "Вася", "Иванов", "домой", "Сокольники", "55555555555", "27.11.2022", "трое суток", "чёрный жемчуг", "Нужно точно в срок!"},
-
-
         };
     }
 
     @Before
-    public void openAppPageBeforeTest(){
+    public void openAppPage(){
         setUp();
         getDriver().get(getBaseURL());
         waitForLoadHomePage();
@@ -62,6 +60,7 @@ public class OrderParametrizeTest extends TestBase{
     @Test
     public void checkOrderIsSuccessfullyCompletedTest(){
         MainPage mainPage = new MainPage(getDriver());
+        mainPage.clickCookieConfirmButton();
         mainPage.clickStartFormRegisterButton(mainPage.getStartFormRegisterButton(startRegisterButton));
         OrderFormWizardStepTwoPage formStepTwo = new OrderFormWizardStepTwoPage(getDriver());
         fillOutOrderForm(surName, name, address, metroStation, phone, time, rentDuration, scooterColour, comments);

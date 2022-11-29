@@ -37,11 +37,13 @@ public class CheckQuestionsParametrizedText extends TestBase{
         waitForLoadHomePage();
 
 
+
     }
 
     @Test
     public void checkFrequentlyAskedQuestionText(){
         MainPage mainPage = new MainPage(getDriver());
+        mainPage.clickCookieConfirmButton();
         mainPage.scrollHomeFourPart();
         String actualQuestionText = mainPage.getQuestionText(questionID);
         Assert.assertEquals("Текст не соответствует ожидаемому", expectedItemText, actualQuestionText);
@@ -49,7 +51,7 @@ public class CheckQuestionsParametrizedText extends TestBase{
 
 
     @After
-    public void tearDownAfterTest(){
+    public void tearDown(){
         // Закрой браузер
         getDriver().quit();
     }

@@ -43,6 +43,7 @@ public class TestBase{
         return driver;
     }
 
+
     public static void waitForLoadHomePage(){
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.className("Header_Header__214zg")));
