@@ -31,12 +31,17 @@ public class OrderPage{
     private By orderConfirmButton = By.xpath(".//div[@class='Order_Modal__YZ-d3']//button[text()='Да']");
     private By statusViewButton = By.xpath(".//div[@class='Order_Modal__YZ-d3']//button[text()='Посмотреть статус']");
     private By orderHeaderScooter = By.xpath(".//div[@class='Order_Header__BZXOb'][text()='Для кого самокат']");
+    private By orderModalHeader = By.xpath("//div[@class='Order_ModalHeader__3FDaJ'][text()='Заказ оформлен']");
     private By errorMessageTextSurNameField = By.xpath(".//div[@class='Input_ErrorMessage__3HvIb Input_Visible___syz6'][text()='Введите корректное имя']");
     private By errorMessageTextNameField = By.xpath(".//div[@class='Input_ErrorMessage__3HvIb Input_Visible___syz6'][text()='Введите корректную фамилию']");
     private By errorMessageTextPhoneField = By.xpath(".//div[@class='Input_ErrorMessage__3HvIb Input_Visible___syz6'][text()='Введите корректный номер']");
     private By errorMessageTextAddressField = By.xpath(".//div[@class='Input_ErrorMessage__3HvIb Input_Visible___syz6'][text()='Введите корректный адрес']");
     private By errorMessageTextMetroStationField = By.xpath(".//div[@class='Order_MetroError__1BtZb'][text()='Выберите станцию']");
 
+
+    public By getOrderModalHeader(){
+        return orderModalHeader;
+    }
 
     public String getErrorMessageTextAddressField(){
         return driver.findElement(errorMessageTextAddressField).getText();

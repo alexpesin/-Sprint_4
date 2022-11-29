@@ -66,7 +66,7 @@ public class OrderParametrizeTest extends TestBase{
         orderPage.clickFinishOrderRegisterButton();
         orderPage.clickOrderConfirmationButton();
         Assert.assertTrue("Нет всплывающего окна с сообщением об успешном создании заказа",
-                isElementPresent(By.xpath(".//div[@class='Order_ModalHeader__3FDaJ'][text()='Заказ оформлен']")));
+                isElementPresent(orderPage.getOrderModalHeader()));
     }
     @After
     public void tearDownAfterTest(){
