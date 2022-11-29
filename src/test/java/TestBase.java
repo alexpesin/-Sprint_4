@@ -1,5 +1,4 @@
-import pom.OrderFormWizardStepOnePage;
-import pom.OrderFormWizardStepTwoPage;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.AfterClass;
 import org.openqa.selenium.By;
@@ -68,20 +67,4 @@ public class TestBase{
         }
     }
 
-    public void fillOutOrderForm(String surName, String name,
-                                 String address, String metroStation, String phone, String date, String rentDuration, String scooterColour, String comments){
-        OrderFormWizardStepOnePage formStepOne = new OrderFormWizardStepOnePage(getDriver());
-        formStepOne.setSurNameField(surName);
-        formStepOne.setNameField(name);
-        formStepOne.setAddressField(address);
-        formStepOne.setMetroStationField(metroStation);
-        formStepOne.setPhoneField(phone);
-        formStepOne.clickOrderNextButton();
-        OrderFormWizardStepTwoPage formStepTwo = new OrderFormWizardStepTwoPage(getDriver());
-        formStepTwo.setOrderDate(date);
-        formStepTwo.setOrderRentTime(rentDuration);
-        formStepTwo.clickScooterColour(scooterColour);
-        formStepTwo.setInputContainer(comments);
-
-    }
 }

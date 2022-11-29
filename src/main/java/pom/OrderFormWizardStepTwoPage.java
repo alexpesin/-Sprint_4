@@ -1,3 +1,4 @@
+/*
 package pom;
 
 import org.openqa.selenium.By;
@@ -115,3 +116,4 @@ public class OrderFormWizardStepTwoPage{
 
 
 }
+*/

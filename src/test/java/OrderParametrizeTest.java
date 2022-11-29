@@ -1,5 +1,4 @@
 import pom.MainPage;
-import pom.OrderFormWizardStepTwoPage;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -7,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
+import pom.OrderPage;
 
 @RunWith(Parameterized.class)
 public class OrderParametrizeTest extends TestBase{
@@ -42,7 +42,6 @@ public class OrderParametrizeTest extends TestBase{
 
     @Parameterized.Parameters
     public static Object[][] getFormData(){
-        //Сгенерируй тестовые данные (нам нужно название городов и результат поиска)
         return new Object[][]{
                 {"top", "Елена", "Петрова", null, "Стрешнево", "11111111111", "27.12.2023", "семеро суток", null, null},
                 {"bottom", "Сергей Петрович", "Сидоров", "Кронштадский бульвар ", "Водный стадион", "55555555599", "27.11.2022", "четверо суток", "серая безысходность", "доставить заказ к 5 часам"},
@@ -62,10 +61,10 @@ public class OrderParametrizeTest extends TestBase{
         MainPage mainPage = new MainPage(getDriver());
         mainPage.clickCookieConfirmButton();
         mainPage.clickStartFormRegisterButton(mainPage.getStartFormRegisterButton(startRegisterButton));
-        OrderFormWizardStepTwoPage formStepTwo = new OrderFormWizardStepTwoPage(getDriver());
-        fillOutOrderForm(surName, name, address, metroStation, phone, time, rentDuration, scooterColour, comments);
-        formStepTwo.clickFinishOrderRegisterButton();
-        formStepTwo.clickOrderConfirmationButton();
+        OrderPage orderPage = new OrderPage(getDriver());
+        orderPage.fillOutOrderForm(surName, name, address, metroStation, phone, time, rentDuration, scooterColour, comments);
+        orderPage.clickFinishOrderRegisterButton();
+        orderPage.clickOrderConfirmationButton();
         Assert.assertTrue("Нет всплывающего окна с сообщением об успешном создании заказа",
                 isElementPresent(By.xpath(".//div[@class='Order_ModalHeader__3FDaJ'][text()='Заказ оформлен']")));
     }

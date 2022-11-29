@@ -1,7 +1,7 @@
 import pom.MainPage;
-import pom.OrderFormWizardStepOnePage;
 import org.junit.*;
 import org.openqa.selenium.By;
+import pom.OrderPage;
 
 public class ExtraTests extends TestBase{
 
@@ -17,8 +17,8 @@ public class ExtraTests extends TestBase{
     public void checkLogoScooterLinkShouldOpenMainScooterPage(){
         MainPage mainPage = new MainPage(getDriver());
         mainPage.clickHeaderRegisterButton();
-        OrderFormWizardStepOnePage stepOnePage = new OrderFormWizardStepOnePage(getDriver());
-        stepOnePage.clickHeaderLogoScooterLink();
+        OrderPage orderPage = new OrderPage(getDriver());
+        orderPage.clickHeaderLogoScooterLink();
         Assert.assertTrue("Главная страница  'Самоката' не открылась", isElementPresent(By.className("Home_FourPart__1uthg")));
     }
 
@@ -26,8 +26,8 @@ public class ExtraTests extends TestBase{
     public void checkErrorMessagesForOrderTableSurNameField(){
         MainPage mainPage = new MainPage(getDriver());
         mainPage.clickHeaderRegisterButton();
-        OrderFormWizardStepOnePage stepOnePage = new OrderFormWizardStepOnePage(getDriver());
-        stepOnePage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
+        OrderPage orderPage = new OrderPage(getDriver());
+        orderPage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
         Assert.assertTrue(isElementPresent(By.xpath(".//div[@class='Order_Header__BZXOb'][text()='Для кого самокат']")));
         Assert.assertTrue("Должно появится сообщение об ошибке: Введите корректное имя", isElementPresent(By.xpath(".//div[@class='Input_ErrorMessage__3HvIb Input_Visible___syz6'][text()='Введите корректное имя']")));
     }
@@ -36,8 +36,8 @@ public class ExtraTests extends TestBase{
     public void checkErrorMessagesForOrderTableNameField(){
         MainPage mainPage = new MainPage(getDriver());
         mainPage.clickHeaderRegisterButton();
-        OrderFormWizardStepOnePage stepOnePage = new OrderFormWizardStepOnePage(getDriver());
-        stepOnePage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
+        OrderPage orderPage = new OrderPage(getDriver());
+        orderPage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
         Assert.assertTrue(isElementPresent(By.xpath(".//div[@class='Order_Header__BZXOb'][text()='Для кого самокат']")));
         Assert.assertTrue("Должно появится сообщение об ошибке: Введите корректную фамилию", isElementPresent(By.xpath(".//div[@class='Input_ErrorMessage__3HvIb Input_Visible___syz6'][text()='Введите корректную фамилию']")));
     }
@@ -45,8 +45,8 @@ public class ExtraTests extends TestBase{
     public void checkErrorMessagesForOrderTablePhoneField(){
         MainPage mainPage = new MainPage(getDriver());
         mainPage.clickHeaderRegisterButton();
-        OrderFormWizardStepOnePage stepOnePage = new OrderFormWizardStepOnePage(getDriver());
-        stepOnePage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
+        OrderPage orderPage = new OrderPage(getDriver());
+        orderPage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
         Assert.assertTrue(isElementPresent(By.xpath(".//div[@class='Order_Header__BZXOb'][text()='Для кого самокат']")));
         Assert.assertTrue("Должно появится сообщение об ошибке: Введите корректный номер", isElementPresent(By.xpath(".//div[@class='Input_ErrorMessage__3HvIb Input_Visible___syz6'][text()='Введите корректный номер']")));
     }
@@ -54,8 +54,8 @@ public class ExtraTests extends TestBase{
     public void checkErrorMessagesForOrderTableMetroStationField(){
         MainPage mainPage = new MainPage(getDriver());
         mainPage.clickHeaderRegisterButton();
-        OrderFormWizardStepOnePage stepOnePage = new OrderFormWizardStepOnePage(getDriver());
-        stepOnePage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
+        OrderPage orderPage = new OrderPage(getDriver());
+        orderPage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
         Assert.assertTrue(isElementPresent(By.xpath(".//div[@class='Order_Header__BZXOb'][text()='Для кого самокат']")));
         Assert.assertTrue("Должно появится сообщение об ошибке: Выберите станцию", isElementPresent(By.xpath(".//div[@class='Order_MetroError__1BtZb'][text()='Выберите станцию']")));
     }
