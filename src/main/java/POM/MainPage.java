@@ -13,12 +13,33 @@ public class MainPage{
         private WebDriver driver;
         private By headerRegisterButton = By.xpath(".//div[@class='Header_Nav__AGCXC']/button[text()='Заказать']");
         private By homeFinishRegisterButton = By.xpath(".//div[@class='Home_FinishButton__1_cWm']/button[text()='Заказать']");
+        private By orderStatusLink = By.xpath(".//button[@class='Header_Link__1TAG7'][text()='Статус заказа']");
+        private By searchButton = By.xpath(".//div[@class='Header_SearchInput__3YRIQ']//button[text()='Go!']");
+        private By headerSearchOrderNumberInput = By.xpath(".//div[@class='Header_SearchInput__3YRIQ']//input[@placeholder ='Введите номер заказа']");
 
 
 
         public MainPage(WebDriver driver){
             this.driver = driver;
         }
+    public void clickOrderStatusButton(){
+        WebElement orderStatus = driver.findElement(orderStatusLink);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", orderStatus);
+        orderStatus.click();
+        new WebDriverWait(driver,Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//input[@placeholder ='Введите номер заказа']")));
+    }
+    public void setOrderNumber(int orderNumber){
+        WebElement headerSearchOrderInputBox = driver.findElement(headerSearchOrderNumberInput);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", headerSearchOrderInputBox);
+        headerSearchOrderInputBox.sendKeys(Integer.toString(orderNumber));
+    }
+    public void clickGoButton(){
+        WebElement goButton = driver.findElement(searchButton);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", goButton);
+        goButton.click();
+
+    }
 
     public void clickHeaderRegisterButton(){
         WebElement element = driver.findElement(headerRegisterButton);

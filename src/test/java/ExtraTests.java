@@ -59,6 +59,15 @@ public class ExtraTests extends TestBase{
         Assert.assertTrue(isElementPresent(By.xpath(".//div[@class='Order_Header__BZXOb'][text()='Для кого самокат']")));
         Assert.assertTrue("Должно появится сообщение об ошибке: Выберите станцию", isElementPresent(By.xpath(".//div[@class='Order_MetroError__1BtZb'][text()='Выберите станцию']")));
     }
+    @Test
+    public void checkTrackNotFound(){
+        MainPage mainPage = new MainPage(getDriver());
+        mainPage.clickOrderStatusButton();
+        mainPage.setOrderNumber(123123);
+        mainPage.clickGoButton();
+        Assert.assertTrue("Заказ с таким номером не должен быть найден", isElementPresent(By.className("Track_NotFound__6oaoY")));
+
+    }
 
     @After
     public void tearDownAfterTest(){
