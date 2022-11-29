@@ -1,5 +1,5 @@
-import POM.MainPage;
-import POM.OrderFormWizardStepOnePage;
+import pom.MainPage;
+import pom.OrderFormWizardStepOnePage;
 import org.junit.*;
 import org.openqa.selenium.By;
 
@@ -8,7 +8,7 @@ public class ExtraTests extends TestBase{
     @Before
     public void openAppPageBeforeTest(){
         setUp();
-        getDriver().get("https://qa-scooter.praktikum-services.ru/");
+        getDriver().get(getBaseURL());
         waitForLoadHomePage();
     }
 

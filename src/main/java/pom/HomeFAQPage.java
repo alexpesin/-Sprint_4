@@ -1,4 +1,4 @@
-package POM;
+package pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class HomeFAQPage{
+public class HomeFAQPage {
 
     private final WebDriver driver;
     private final By home_FourPart = By.className("Home_FourPart__1uthg");

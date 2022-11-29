@@ -1,14 +1,11 @@
-import POM.OrderFormWizardStepOnePage;
-import POM.OrderFormWizardStepTwoPage;
+import pom.OrderFormWizardStepOnePage;
+import pom.OrderFormWizardStepTwoPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,8 +13,12 @@ import java.time.Duration;
 
 public class TestBase{
     private static WebDriver driver;
+    private final String baseURL = "https://qa-scooter.praktikum-services.ru/";
 
-    //@BeforeClass
+    public String getBaseURL(){
+        return baseURL;
+    }
+//@BeforeClass
     // создали драйвер для браузера Chrome
         /*ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");

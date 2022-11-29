@@ -1,5 +1,5 @@
-import POM.MainPage;
-import POM.OrderFormWizardStepTwoPage;
+import pom.MainPage;
+import pom.OrderFormWizardStepTwoPage;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -55,7 +55,7 @@ public class OrderParametrizeTest extends TestBase{
     @Before
     public void openAppPageBeforeTest(){
         setUp();
-        getDriver().get("https://qa-scooter.praktikum-services.ru/");
+        getDriver().get(getBaseURL());
         waitForLoadHomePage();
     }
 

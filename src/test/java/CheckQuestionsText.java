@@ -1,4 +1,4 @@
-import POM.HomeFAQPage;
+import pom.HomeFAQPage;
 import org.junit.*;
 
 import static org.junit.runners.MethodSorters.NAME_ASCENDING;
