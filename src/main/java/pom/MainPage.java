@@ -15,7 +15,12 @@ public class MainPage{
         private By orderStatusLink = By.xpath(".//button[@class='Header_Link__1TAG7'][text()='Статус заказа']");
         private By searchButton = By.xpath(".//div[@class='Header_SearchInput__3YRIQ']//button[text()='Go!']");
         private By headerSearchOrderNumberInput = By.xpath(".//div[@class='Header_SearchInput__3YRIQ']//input[@placeholder ='Введите номер заказа']");
-        private By home_FourPart = By.className("Home_FourPart__1uthg");
+
+    public By getHome_FourPart(){
+        return home_FourPart;
+    }
+
+    private By home_FourPart = By.className("Home_FourPart__1uthg");
         private By rccConfirmButton = By.id("rcc-confirm-button");
 
 

@@ -1,13 +1,12 @@
 package pom;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+
+import static org.openqa.selenium.Keys.*;
 
 
 public class OrderPage{
@@ -31,7 +30,37 @@ public class OrderPage{
     private By registerButtonMiddle = By.xpath(".//div[@class='Order_Buttons__1xGrp']/button[text()='Заказать']");
     private By orderConfirmButton = By.xpath(".//div[@class='Order_Modal__YZ-d3']//button[text()='Да']");
     private By statusViewButton = By.xpath(".//div[@class='Order_Modal__YZ-d3']//button[text()='Посмотреть статус']");
+    private By orderHeaderScooter = By.xpath(".//div[@class='Order_Header__BZXOb'][text()='Для кого самокат']");
+    private By errorMessageTextSurNameField = By.xpath(".//div[@class='Input_ErrorMessage__3HvIb Input_Visible___syz6'][text()='Введите корректное имя']");
+    private By errorMessageTextNameField = By.xpath(".//div[@class='Input_ErrorMessage__3HvIb Input_Visible___syz6'][text()='Введите корректную фамилию']");
+    private By errorMessageTextPhoneField = By.xpath(".//div[@class='Input_ErrorMessage__3HvIb Input_Visible___syz6'][text()='Введите корректный номер']");
+    private By errorMessageTextAddressField = By.xpath(".//div[@class='Input_ErrorMessage__3HvIb Input_Visible___syz6'][text()='Введите корректный адрес']");
+    private By errorMessageTextMetroStationField = By.xpath(".//div[@class='Order_MetroError__1BtZb'][text()='Выберите станцию']");
 
+
+    public String getErrorMessageTextAddressField(){
+        return driver.findElement(errorMessageTextAddressField).getText();
+    }
+
+    public String getErrorMessageTextMetroStationField(){
+        return driver.findElement(errorMessageTextMetroStationField).getText();
+    }
+
+    public String getErrorMessageTextPhoneField(){
+        return driver.findElement(errorMessageTextPhoneField).getText();
+    }
+    public String getErrorMessageTextNameField(){
+        return driver.findElement(errorMessageTextNameField).getText();
+    }
+
+    public String getErrorMessageTextSurNameField(){
+        return driver.findElement(errorMessageTextSurNameField).getText();
+    }
+
+
+    public By getOrderHeaderScooter(){
+        return orderHeaderScooter;
+    }
 
     public OrderPage(WebDriver driver){
         this.driver = driver;
@@ -88,6 +117,15 @@ public class OrderPage{
         String metroValue = String.format(metroOptionTemplate, metroStation);
         element.sendKeys(metroStation);
         driver.findElement(By.xpath(metroValue)).click();
+    }
+    public void setMetroStationFieldUsingEnterKeyButton(String metroStation){
+        WebElement element = driver.findElement(metroStationField);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
+        String metroOptionTemplate = ".//div[@class='select-search__select']//*[text()='%s']";
+        String metroValue = String.format(metroOptionTemplate, metroStation);
+        element.sendKeys(metroStation);
+        element.sendKeys(ENTER);
+
     }
 
     public void setPhoneField(String phone){

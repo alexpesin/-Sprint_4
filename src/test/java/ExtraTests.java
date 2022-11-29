@@ -16,49 +16,200 @@ public class ExtraTests extends TestBase{
     @Test
     public void checkLogoScooterLinkShouldOpenMainScooterPage(){
         MainPage mainPage = new MainPage(getDriver());
+        mainPage.clickCookieConfirmButton();
         mainPage.clickHeaderRegisterButton();
         OrderPage orderPage = new OrderPage(getDriver());
         orderPage.clickHeaderLogoScooterLink();
-        Assert.assertTrue("Главная страница  'Самоката' не открылась", isElementPresent(By.className("Home_FourPart__1uthg")));
+        Assert.assertTrue("Главная страница  'Самоката' не открылась", isElementPresent(mainPage.getHome_FourPart()));
+    }
+    // тесты на сообщения об ошибках, когда обязательные поля не заполнены
+    @Test
+    public void checkErrorMessagesForOrderTableSurNameFieldEmptyValue(){
+        MainPage mainPage = new MainPage(getDriver());
+        mainPage.clickCookieConfirmButton();
+        mainPage.clickHeaderRegisterButton();
+        OrderPage orderPage = new OrderPage(getDriver());
+
+        orderPage.setNameField("Иванов");
+        orderPage.setAddressField("село Кукуево");
+        orderPage.setMetroStationField("Сокол");
+        orderPage.setPhoneField("55555555555");
+
+        orderPage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
+        Assert.assertTrue("Пользователь должен остаться на той же странице", isElementPresent(orderPage.getOrderHeaderScooter()));
+        String expectedErrorMessage = "Введите корректное имя";
+        Assert.assertEquals("Неверное сообщение об ошибке: ", expectedErrorMessage, orderPage.getErrorMessageTextSurNameField());
     }
 
     @Test
-    public void checkErrorMessagesForOrderTableSurNameField(){
+    public void checkErrorMessagesForOrderTableSurNameFieldNonRussianValue(){
         MainPage mainPage = new MainPage(getDriver());
+        mainPage.clickCookieConfirmButton();
         mainPage.clickHeaderRegisterButton();
         OrderPage orderPage = new OrderPage(getDriver());
+
+        orderPage.setSurNameField("Test!");
+        orderPage.setNameField("Иванов");
+        orderPage.setAddressField("село Кукуево");
+        orderPage.setMetroStationField("Сокол");
+        orderPage.setPhoneField("55555555555");
+
         orderPage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
-        Assert.assertTrue(isElementPresent(By.xpath(".//div[@class='Order_Header__BZXOb'][text()='Для кого самокат']")));
-        Assert.assertTrue("Должно появится сообщение об ошибке: Введите корректное имя", isElementPresent(By.xpath(".//div[@class='Input_ErrorMessage__3HvIb Input_Visible___syz6'][text()='Введите корректное имя']")));
+        Assert.assertTrue("Пользователь должен остаться на той же странице", isElementPresent(orderPage.getOrderHeaderScooter()));
+        String expectedErrorMessage = "Введите корректное имя";
+        Assert.assertEquals("Неверное сообщение об ошибке: ", expectedErrorMessage, orderPage.getErrorMessageTextSurNameField());
+
     }
 
     @Test
-    public void checkErrorMessagesForOrderTableNameField(){
+    public void checkErrorMessagesForOrderTableNameFieldEmptyValue(){
         MainPage mainPage = new MainPage(getDriver());
+        mainPage.clickCookieConfirmButton();
         mainPage.clickHeaderRegisterButton();
         OrderPage orderPage = new OrderPage(getDriver());
+
+        orderPage.setAddressField("село Кукуево");
+        orderPage.setMetroStationField("Сокол");
+        orderPage.setPhoneField("55555555555");
+        orderPage.setSurNameField("Иван");
+
         orderPage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
-        Assert.assertTrue(isElementPresent(By.xpath(".//div[@class='Order_Header__BZXOb'][text()='Для кого самокат']")));
-        Assert.assertTrue("Должно появится сообщение об ошибке: Введите корректную фамилию", isElementPresent(By.xpath(".//div[@class='Input_ErrorMessage__3HvIb Input_Visible___syz6'][text()='Введите корректную фамилию']")));
+        Assert.assertTrue("Пользователь должен остаться на той же странице", isElementPresent(orderPage.getOrderHeaderScooter()));
+        String expectedErrorMessage = "Введите корректную фамилию";
+        Assert.assertEquals("Неверное сообщение об ошибке: ", expectedErrorMessage, orderPage.getErrorMessageTextNameField());
+    }
+
+    @Test
+    public void checkErrorMessagesForOrderTableNameFieldNonRussianValue(){
+        MainPage mainPage = new MainPage(getDriver());
+        mainPage.clickCookieConfirmButton();
+        mainPage.clickHeaderRegisterButton();
+        OrderPage orderPage = new OrderPage(getDriver());
+
+        orderPage.setMetroStationField("Сокол");
+        orderPage.setPhoneField("55555555555");
+        orderPage.setAddressField("село Кукуево");
+        orderPage.setNameField("Doe");
+        orderPage.setSurNameField("Иван");
+
+        orderPage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
+        Assert.assertTrue("Пользователь должен остаться на той же странице", isElementPresent(orderPage.getOrderHeaderScooter()));
+        String expectedErrorMessage = "Введите корректную фамилию";
+        Assert.assertEquals("Неверное сообщение об ошибке: ", expectedErrorMessage, orderPage.getErrorMessageTextNameField());
+
     }
     @Test
-    public void checkErrorMessagesForOrderTablePhoneField(){
+    public void checkErrorMessagesForOrderTablePhoneFieldEmptyValue(){
         MainPage mainPage = new MainPage(getDriver());
+        mainPage.clickCookieConfirmButton();
         mainPage.clickHeaderRegisterButton();
         OrderPage orderPage = new OrderPage(getDriver());
+
+        orderPage.setAddressField("село Кукуево");
+        orderPage.setMetroStationField("Черкизовская");
+        orderPage.setNameField("Петров");
+        orderPage.setSurNameField("Иван");
+
         orderPage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
-        Assert.assertTrue(isElementPresent(By.xpath(".//div[@class='Order_Header__BZXOb'][text()='Для кого самокат']")));
-        Assert.assertTrue("Должно появится сообщение об ошибке: Введите корректный номер", isElementPresent(By.xpath(".//div[@class='Input_ErrorMessage__3HvIb Input_Visible___syz6'][text()='Введите корректный номер']")));
+        Assert.assertTrue("Пользователь должен остаться на той же странице", isElementPresent(orderPage.getOrderHeaderScooter()));
+        String expectedErrorMessage = "Введите корректный номер";
+        Assert.assertEquals("Неверное сообщение об ошибке: ", expectedErrorMessage, orderPage.getErrorMessageTextPhoneField());
+    }
+
+    @Test
+    public void checkErrorMessagesForOrderTablePhoneFieldInvalidValue(){
+        MainPage mainPage = new MainPage(getDriver());
+        mainPage.clickCookieConfirmButton();
+        mainPage.clickHeaderRegisterButton();
+        OrderPage orderPage = new OrderPage(getDriver());
+
+        orderPage.setPhoneField("32");
+        orderPage.setAddressField("село Кукуево");
+        orderPage.setMetroStationField("Черкизовская");
+        orderPage.setNameField("Петров");
+        orderPage.setSurNameField("Иван");
+
+        orderPage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
+        Assert.assertTrue("Пользователь должен остаться на той же странице", isElementPresent(orderPage.getOrderHeaderScooter()));
+        String expectedErrorMessage = "Введите корректный номер";
+        Assert.assertEquals("Неверное сообщение об ошибке: ", expectedErrorMessage, orderPage.getErrorMessageTextPhoneField());
+    }
+
+    @Test
+    public void checkErrorMessagesForOrderTableMetroStationFieldEmptyValue(){
+        MainPage mainPage = new MainPage(getDriver());
+        mainPage.clickCookieConfirmButton();
+        mainPage.clickHeaderRegisterButton();
+        OrderPage orderPage = new OrderPage(getDriver());
+
+        orderPage.setNameField("Петров");
+        orderPage.setAddressField("село Кукуево");
+        orderPage.setPhoneField("55555555555");
+        orderPage.setSurNameField("Иван");
+
+        orderPage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
+        Assert.assertTrue("Пользователь должен остаться на той же странице", isElementPresent(orderPage.getOrderHeaderScooter()));
+
+        String expectedErrorMessage = "Выберите станцию";
+        Assert.assertEquals("Неверное сообщение об ошибке: ", expectedErrorMessage, orderPage.getErrorMessageTextMetroStationField());
+    }
+
+    @Test
+    public void checkErrorMessagesForOrderTableMetroStationFieldInvalidValue(){
+        MainPage mainPage = new MainPage(getDriver());
+        mainPage.clickCookieConfirmButton();
+        mainPage.clickHeaderRegisterButton();
+        OrderPage orderPage = new OrderPage(getDriver());
+
+        orderPage.setNameField("Петров");
+        orderPage.setAddressField("село Кукуево");
+        orderPage.setPhoneField("55555555555");
+        orderPage.setSurNameField("Иван");
+        orderPage.setMetroStationFieldUsingEnterKeyButton("Купчино");
+
+        orderPage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
+        Assert.assertTrue("Пользователь должен остаться на той же странице", isElementPresent(orderPage.getOrderHeaderScooter()));
+
+        String expectedErrorMessage = "Выберите станцию";
+        Assert.assertEquals("Неверное сообщение об ошибке: ", expectedErrorMessage, orderPage.getErrorMessageTextMetroStationField());
+    }
+
+    @Test
+    public void checkErrorMessagesForOrderTableAddressFieldEmptyValue(){
+        MainPage mainPage = new MainPage(getDriver());
+        mainPage.clickCookieConfirmButton();
+        mainPage.clickHeaderRegisterButton();
+        OrderPage orderPage = new OrderPage(getDriver());
+
+        orderPage.setPhoneField("55555555555");
+        orderPage.setMetroStationField("Черкизовская");
+        orderPage.setNameField("Петров");
+        orderPage.setSurNameField("Иван");
+
+        orderPage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
+        Assert.assertTrue("Пользователь должен остаться на той же странице", isElementPresent(orderPage.getOrderHeaderScooter()));
+        String expectedErrorMessage = "Введите корректный адрес";
+        Assert.assertEquals("Неверное сообщение об ошибке: ", expectedErrorMessage, orderPage.getErrorMessageTextAddressField());
     }
     @Test
-    public void checkErrorMessagesForOrderTableMetroStationField(){
+    public void checkErrorMessagesForOrderTableAddressFieldNonRussianValue(){
         MainPage mainPage = new MainPage(getDriver());
+        mainPage.clickCookieConfirmButton();
         mainPage.clickHeaderRegisterButton();
         OrderPage orderPage = new OrderPage(getDriver());
+
+        orderPage.setPhoneField("55555555555");
+        orderPage.setMetroStationField("Черкизовская");
+        orderPage.setNameField("Петров");
+        orderPage.setAddressField("!@#$%^&*");
+        orderPage.setSurNameField("Иван");
+
         orderPage.clickOrderNextButtonNoRequiredFieldsAreCompleted();
-        Assert.assertTrue(isElementPresent(By.xpath(".//div[@class='Order_Header__BZXOb'][text()='Для кого самокат']")));
-        Assert.assertTrue("Должно появится сообщение об ошибке: Выберите станцию", isElementPresent(By.xpath(".//div[@class='Order_MetroError__1BtZb'][text()='Выберите станцию']")));
+        Assert.assertTrue("Пользователь должен остаться на той же странице", isElementPresent(orderPage.getOrderHeaderScooter()));
+        String expectedErrorMessage = "Введите корректный адрес";
+        Assert.assertEquals("Неверное сообщение об ошибке: ", expectedErrorMessage, orderPage.getErrorMessageTextAddressField());
     }
+
     @Test
     public void checkTrackNotFound(){
         MainPage mainPage = new MainPage(getDriver());
