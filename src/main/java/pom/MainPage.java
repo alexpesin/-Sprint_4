@@ -16,6 +16,7 @@ public class MainPage{
         private By orderStatusLink = By.xpath(".//button[@class='Header_Link__1TAG7'][text()='Статус заказа']");
         private By searchButton = By.xpath(".//div[@class='Header_SearchInput__3YRIQ']//button[text()='Go!']");
         private By headerSearchOrderNumberInput = By.xpath(".//div[@class='Header_SearchInput__3YRIQ']//input[@placeholder ='Введите номер заказа']");
+        private By home_FourPart = By.className("Home_FourPart__1uthg");
 
 
 
@@ -71,5 +72,32 @@ public class MainPage{
         new WebDriverWait(driver,Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.className("Order_NextButton__1_rCA")));
     }
+
+    // методы для проверки текста (блок часто спрашиваемых вопросов)
+
+    public void scrollHomeFourPart(){
+        WebElement homeFourPart = driver.findElement(home_FourPart);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", homeFourPart);
+    }
+
+    public String getQuestionID(int index){
+        return "accordion__heading-" + index;
+    }
+
+    public void clickFAQItem(String locator){
+        WebElement item = driver.findElement(By.id(locator));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", item);
+        item.click();
+    }
+
+    public String getQuestionText(int index){
+        String itemHeadingID = getQuestionID(index);
+        clickFAQItem(itemHeadingID);
+        String itemPanelID = "accordion__panel-" + index;
+        new WebDriverWait(driver, Duration.ofSeconds(1))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.id(itemPanelID)));
+        return driver.findElement(By.id(itemPanelID)).getText();
+    }
+
 
 }

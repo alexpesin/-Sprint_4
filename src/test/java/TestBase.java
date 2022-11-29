@@ -51,12 +51,12 @@ public class TestBase{
 
     }
 
-    @AfterClass
+    /*@AfterClass
     public static void tearDown(){
         // Закрой браузер
         driver.quit();
         driver = null;
-    }
+    }*/
 
     boolean isElementPresent(By locator){
         try{

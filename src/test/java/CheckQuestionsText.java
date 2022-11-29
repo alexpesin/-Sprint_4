@@ -1,3 +1,4 @@
+/*
 import pom.HomeFAQPage;
 import org.junit.*;
 
@@ -6,11 +7,13 @@ import static org.junit.runners.MethodSorters.NAME_ASCENDING;
 @FixMethodOrder(NAME_ASCENDING)
 public class CheckQuestionsText extends TestBase{
 
-   /* В этом классе есть  два варианта запуска тестов:
+   */
+/* В этом классе есть  два варианта запуска тестов:
     1. используя @BeforeClass в TestBase инициализирую браузер один раз, прогоняю все тесты и закрываю браузер
     2. @Before инициализирую и закрываю браузер после каждого теста (выбрано сейчаc  из-за условия задачи, но первый вариант выглядит логичнее)
-    */
+    *//*
 
+Before
     @Before
     public void openHomeFAQPage(){
         setUp();
@@ -94,3 +97,4 @@ public class CheckQuestionsText extends TestBase{
     }
 
 }
+*/
