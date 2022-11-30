@@ -1,15 +1,18 @@
-import org.junit.*;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import pom.MainPage;
 
 
 @RunWith(Parameterized.class)
-public class CheckQuestionsParametrizedText extends TestBase{
+public class FrequentlyAskedQuestionText extends TestBase{
     private int questionID;
     private String expectedItemText;
 
-    public CheckQuestionsParametrizedText(int questionID, String expectedItemText){
+    public FrequentlyAskedQuestionText(int questionID, String expectedItemText){
         this.questionID = questionID;
         this.expectedItemText = expectedItemText;
     }
@@ -35,9 +38,6 @@ public class CheckQuestionsParametrizedText extends TestBase{
         setUp();
         getDriver().get(getBaseURL());
         waitForLoadHomePage();
-
-
-
     }
 
     @Test
@@ -48,7 +48,6 @@ public class CheckQuestionsParametrizedText extends TestBase{
         String actualQuestionText = mainPage.getQuestionText(questionID);
         Assert.assertEquals("Текст не соответствует ожидаемому", expectedItemText, actualQuestionText);
     }
-
 
     @After
     public void tearDown(){

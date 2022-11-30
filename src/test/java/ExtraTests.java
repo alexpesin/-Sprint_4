@@ -1,7 +1,10 @@
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import pom.MainPage;
-import org.junit.*;
-import org.openqa.selenium.By;
 import pom.OrderPage;
+import pom.TrackPage;
 
 public class ExtraTests extends TestBase{
 
@@ -213,11 +216,12 @@ public class ExtraTests extends TestBase{
     @Test
     public void checkTrackNotFound(){
         MainPage mainPage = new MainPage(getDriver());
+        mainPage.clickCookieConfirmButton();
         mainPage.clickOrderStatusButton();
         mainPage.setOrderNumber(123123);
         mainPage.clickGoButton();
-        Assert.assertTrue("Заказ с таким номером не должен быть найден", isElementPresent(By.className("Track_NotFound__6oaoY")));
-
+        TrackPage trackPage = new TrackPage(getDriver());
+        Assert.assertTrue("Заказ с таким номером не должен быть найден", isElementPresent(trackPage.getOrderContentForm()));
     }
 
     @After

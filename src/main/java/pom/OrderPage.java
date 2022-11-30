@@ -1,12 +1,15 @@
 package pom;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static org.openqa.selenium.Keys.*;
+import static org.openqa.selenium.Keys.ENTER;
 
 
 public class OrderPage{
@@ -39,6 +42,10 @@ public class OrderPage{
     private By errorMessageTextMetroStationField = By.xpath(".//div[@class='Order_MetroError__1BtZb'][text()='Выберите станцию']");
 
 
+    public OrderPage(WebDriver driver){
+        this.driver = driver;
+    }
+
     public By getOrderModalHeader(){
         return orderModalHeader;
     }
@@ -54,6 +61,7 @@ public class OrderPage{
     public String getErrorMessageTextPhoneField(){
         return driver.findElement(errorMessageTextPhoneField).getText();
     }
+
     public String getErrorMessageTextNameField(){
         return driver.findElement(errorMessageTextNameField).getText();
     }
@@ -67,15 +75,12 @@ public class OrderPage{
         return orderHeaderScooter;
     }
 
-    public OrderPage(WebDriver driver){
-        this.driver = driver;
-    }
 
     public void clickHeaderLogoScooterLink(){
         WebElement element = driver.findElement(headerLogoScooterLink);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
         element.click();
-        new WebDriverWait(driver,Duration.ofSeconds(3))
+        new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.className("Home_FourPart__1uthg")));
     }
 
@@ -83,15 +88,17 @@ public class OrderPage{
         WebElement element = driver.findElement(orderNextButton);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
         element.click();
-        new WebDriverWait(driver,Duration.ofSeconds(3))
+        new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.className("Order_Buttons__1xGrp")));
     }
+
     public void clickOrderNextButtonNoRequiredFieldsAreCompleted(){
         WebElement element = driver.findElement(orderNextButton);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
         element.click();
     }
-//заполнение полей первого шага визарда формы заказа
+
+    //заполнение полей первого шага визарда формы заказа
     public void setSurNameField(String surName){
         WebElement element = driver.findElement(surNameField);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
@@ -107,7 +114,7 @@ public class OrderPage{
     }
 
     public void setAddressField(String address){
-        if (address !=null) {
+        if (address != null) {
             WebElement element = driver.findElement(addressField);
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
             element.clear();
@@ -123,6 +130,7 @@ public class OrderPage{
         element.sendKeys(metroStation);
         driver.findElement(By.xpath(metroValue)).click();
     }
+
     public void setMetroStationFieldUsingEnterKeyButton(String metroStation){
         WebElement element = driver.findElement(metroStationField);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
@@ -155,11 +163,12 @@ public class OrderPage{
         new WebDriverWait(driver, Duration.ofSeconds(1))
                 .until(ExpectedConditions.visibilityOfElementLocated(dayPickerToDayButton)).click();
     }
+
     public void clickDropDownСontrolButton(){
         WebElement element = driver.findElement(dropDownСontrol);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
         element.click();
-        new WebDriverWait(driver,Duration.ofSeconds(3))
+        new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.className("Dropdown-menu")));
     }
 
@@ -168,14 +177,17 @@ public class OrderPage{
         String rentDurationValue = String.format(rentDurationOptionTemplate, rentDuration);
         driver.findElement(By.xpath(rentDurationValue)).click();
     }
+
     public void clickOrderCheckboxBlack(){
         driver.findElement(orderCheckboxBlack).click();
     }
+
     public void clickOrderCheckboxGrey(){
         driver.findElement(orderCheckboxGrey).click();
     }
+
     public void clickScooterColour(String scooterColour){
-        if (scooterColour !=null) {
+        if (scooterColour != null) {
             if (scooterColour.equals("чёрный жемчуг")) {
                 clickOrderCheckboxBlack();
             } else if (scooterColour.equals("серая безысходность")) {
@@ -185,18 +197,20 @@ public class OrderPage{
     }
 
     public void setInputContainer(String comments){
-        if(comments !=null) {
+        if (comments != null) {
             WebElement element = driver.findElement(inputContainer);
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
             element.clear();
             element.sendKeys(comments);
         }
     }
+
     public void setOrderDate(String date){
         clickDatePickerField();
         //clickDatePickerPopper();
         clickDayPickerToDayButton();
     }
+
     public void setOrderRentTime(String rentDuration){
         clickDropDownСontrolButton();
         clickDropDownOptionsToSelectRentDuration(rentDuration);
@@ -206,23 +220,25 @@ public class OrderPage{
         WebElement element = driver.findElement(registerButtonMiddle);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
         element.click();
-        new WebDriverWait(driver,Duration.ofSeconds(3))
+        new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.className("Order_Modal__YZ-d3")));
     }
+
     public void clickOrderConfirmationButton(){
         WebElement element = driver.findElement(orderConfirmButton);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
         element.click();
-        new WebDriverWait(driver,Duration.ofSeconds(3))
+        new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//div[@class='Order_ModalHeader__3FDaJ'][text()='Заказ оформлен']")));
     }
 
     public void clickStatusViewButton(){
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", statusViewButton);
         driver.findElement(statusViewButton).click();
-        new WebDriverWait(driver,Duration.ofSeconds(3))
+        new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.className("Track_Content__St6Kn")));
     }
+
     // заполнение формы заказа
     public void fillOutOrderForm(String surName, String name,
                                  String address, String metroStation, String phone, String date, String rentDuration, String scooterColour, String comments){

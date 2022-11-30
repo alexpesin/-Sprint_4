@@ -1,15 +1,14 @@
-import pom.MainPage;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.By;
+import pom.MainPage;
 import pom.OrderPage;
 
 @RunWith(Parameterized.class)
-public class OrderParametrizeTest extends TestBase{
+public class OrderIsCompletedTest extends TestBase{
 
 
     private final String startRegisterButton;
@@ -25,7 +24,7 @@ public class OrderParametrizeTest extends TestBase{
     private final String comments;
 
 
-    public OrderParametrizeTest(String startRegisterButton, String surName, String name,
+    public OrderIsCompletedTest(String startRegisterButton, String surName, String name,
                                 String address, String metroStation, String phone, String time, String rentDuration, String scooterColour, String comments){
         this.startRegisterButton = startRegisterButton;
         this.surName = surName;
