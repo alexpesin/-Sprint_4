@@ -16,6 +16,7 @@ public class OrderPage{
 
     private WebDriver driver;
     private By orderContentForm = By.className("Order_Content__bmtHS");
+    private By home_FourPart = By.className("Home_FourPart__1uthg");
     private By surNameField = By.xpath(".//input[@placeholder='* Имя']");
     private By nameField = By.xpath(".//input[@placeholder='* Фамилия']");
     private By addressField = By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']");
@@ -81,7 +82,7 @@ public class OrderPage{
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
         element.click();
         new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.className("Home_FourPart__1uthg")));
+                .until(ExpectedConditions.visibilityOfElementLocated(home_FourPart));
     }
 
     public void clickOrderNextButton(){
@@ -89,7 +90,7 @@ public class OrderPage{
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
         element.click();
         new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.className("Order_Buttons__1xGrp")));
+                .until(ExpectedConditions.visibilityOfElementLocated(registerButtonMiddle));
     }
 
     public void clickOrderNextButtonNoRequiredFieldsAreCompleted(){
@@ -221,7 +222,7 @@ public class OrderPage{
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
         element.click();
         new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.className("Order_Modal__YZ-d3")));
+                .until(ExpectedConditions.visibilityOfElementLocated(orderConfirmButton));
     }
 
     public void clickOrderConfirmationButton(){
@@ -229,7 +230,7 @@ public class OrderPage{
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
         element.click();
         new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//div[@class='Order_ModalHeader__3FDaJ'][text()='Заказ оформлен']")));
+                .until(ExpectedConditions.visibilityOfElementLocated(orderModalHeader));
     }
 
     public void clickStatusViewButton(){

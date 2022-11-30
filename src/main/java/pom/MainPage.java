@@ -15,17 +15,17 @@ public class MainPage{
     private By orderStatusLink = By.xpath(".//button[@class='Header_Link__1TAG7'][text()='Статус заказа']");
     private By searchButton = By.xpath(".//div[@class='Header_SearchInput__3YRIQ']//button[text()='Go!']");
     private By headerSearchOrderNumberInput = By.xpath(".//div[@class='Header_SearchInput__3YRIQ']//input[@placeholder ='Введите номер заказа']");
-
-    public By getHome_FourPart(){
-        return home_FourPart;
-    }
-
     private By home_FourPart = By.className("Home_FourPart__1uthg");
+    private By orderNextButton = By.className("Order_NextButton__1_rCA");
     private By rccConfirmButton = By.id("rcc-confirm-button");
 
 
     public MainPage(WebDriver driver){
         this.driver = driver;
+    }
+
+    public By getHome_FourPart(){
+        return home_FourPart;
     }
     //закрыть куки
 
@@ -51,7 +51,7 @@ public class MainPage{
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", orderStatus);
         orderStatus.click();
         new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(visibilityOfElementLocated(By.xpath(".//input[@placeholder ='Введите номер заказа']")));
+                .until(visibilityOfElementLocated(headerSearchOrderNumberInput));
     }
 
     public void setOrderNumber(int orderNumber){
@@ -72,7 +72,7 @@ public class MainPage{
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
         driver.findElement(headerRegisterButton).click();
         new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(visibilityOfElementLocated(By.className("Order_NextButton__1_rCA")));
+                .until(visibilityOfElementLocated(orderNextButton));
     }
 
     public WebElement getStartFormRegisterButton(String buttonName){
@@ -93,7 +93,7 @@ public class MainPage{
                 .until(ExpectedConditions.visibilityOf(startFormRegisterButton));
         startFormRegisterButton.click();
         new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(visibilityOfElementLocated(By.className("Order_NextButton__1_rCA")));
+                .until(visibilityOfElementLocated(orderNextButton));
     }
 
     // методы для проверки текста (блок часто спрашиваемых вопросов)
